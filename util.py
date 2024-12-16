@@ -19,7 +19,6 @@ import statsmodels.api as sm
 import scipy as sci
 from torchvision.ops import nms
 import torch
-import numpy as np
 import warnings
 from huggingface_hub import hf_hub_download
 from GroundingDINO.groundingdino.util.slconfig import SLConfig
@@ -29,7 +28,6 @@ import GroundingDINO.groundingdino.datasets.transforms as T
 
 from typing import Tuple, Union
 from PIL import Image
-
 
 def load_image(input_data: Union[str, np.array, Image.Image, torch.Tensor]) -> Tuple[np.array, torch.Tensor]:
     """
@@ -83,13 +81,16 @@ def load_image(input_data: Union[str, np.array, Image.Image, torch.Tensor]) -> T
 
 # G-DINO model loading function
 def load_GDINO(repo_id, filename, ckpt_config_filename, device='cpu'):
+    """
+    A customized function to load Grounding DINO model
+    """
     cache_config_file = hf_hub_download(repo_id=repo_id, filename=ckpt_config_filename)
     args = SLConfig.fromfile(cache_config_file) 
     model = build_model(args)
     args.device = device
     cache_file = hf_hub_download(repo_id=repo_id, filename=filename)
     checkpoint = torch.load(cache_file, map_location='cpu')
-    log = model.load_state_dict(clean_state_dict(checkpoint['model']), strict=False)
+    #log = model.load_state_dict(clean_state_dict(checkpoint['model']), strict=False)
     #print(f"Model loaded from {cache_file} \n => {log}")
     
     _ = model.eval()
@@ -314,6 +315,15 @@ def filter_results_by_logit(
     return filtered_filtered_results
 
 def knower_level(CM):
+    """
+    Evaluates the knower-level given a response confusion matrix
+
+    Parameters:
+    - CM: confusion matrix for the response, generated from the create_CM() function
+
+    Returns:
+    - Knower-level
+    """
     average_CM = np.round(np.mean(CM[:,1:,:], axis = 0)) # do not count invalid answers (set to 20)
     #print(average_CM)
     stim_per_num = sum(average_CM)
@@ -354,6 +364,17 @@ def knower_level(CM):
     return knower
 
 def human_likeness(confusion_matrix):
+    """
+    Correlation between the agent's response matrix and the reponses from human which follows the Weber's law
+    and with random choice baseline.
+
+    Parameters:
+    - CM: confusion matrix for the response, generated from the create_CM() function
+
+    Returns:
+    - Pearson Correaltion with random choice
+    - Pearson Correaltion with human response that follows the Weber's law
+    """
     CM_avg = np.mean(confusion_matrix, axis=0) # average confusion matrix
     np.random.seed(13)  # for reproducibility
     weber = 0.15
@@ -412,6 +433,16 @@ def human_likeness(confusion_matrix):
     return corr_norm, corr_uniform
 
 def scalar_variability(confusion_matrix):
+    """
+    Correlation between the agent's response matrix and the reponses from human which follows the Weber's law
+    and with random choice baseline.
+
+    Parameters:
+    - CM: confusion matrix for the response, generated from the create_CM() function
+
+    Returns:
+    Scalar variability statistic test results
+    """
     scalar = False
     # Initialize arrays
     cv = np.zeros((1,10))
