@@ -1,7 +1,22 @@
+"""
+Numerosity Analysis and Object Detection Utilities
+
+This script contains utility functions and methods for analyzing numerosity confusion matrices,
+assessing human-likeness of behavior, and evaluating scalar variability. Additionally, it includes
+tools for image processing, detection result filtering, and working with GroundingDINO models.
+
+Key Components:
+- Image loading and preprocessing (`load_image`).
+- GroundingDINO model loading (`load_GDINO`).
+- Confusion matrix analysis (`MWE`, `knower_level`, `human_likeness`, `scalar_variability`).
+- Filtering detection results based on logits, NMS, and bounding box area (`filter_results_by_logit`).
+
+Author: Kuinan Hou
+License: CC0 1.0 Universal
+"""
 import numpy as np
 import statsmodels.api as sm
 import scipy as sci
-import matplotlib.pyplot as plt
 from torchvision.ops import nms
 import torch
 import numpy as np

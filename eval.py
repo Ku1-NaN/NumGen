@@ -6,11 +6,8 @@ The `eval_image` function processes an image with a given prompt to predict boun
 The `eval_CM` function evaluates a confusion matrix and computes various metrics such as accuracy, knower level, 
 and human-likeness correlation.
 
-Dependencies:
-- GroundingDINO: Utilized for inference and bounding box predictions.
-- NumPy and Pandas: For numerical operations and result formatting.
-
-Ensure all dependencies are installed and the appropriate model checkpoints are available before using this script.
+Author: Kuinan Hou
+License: CC0 1.0 Universal
 """
 
 from GroundingDINO.groundingdino.util.inference import predict
