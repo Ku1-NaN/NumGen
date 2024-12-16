@@ -26,7 +26,7 @@ On Linux:
 export CUDA_HOME=/path/to/cuda
 ```
 On Windows:
-```
+```cmd
 setx CUDA_HOME=/path/to/cuda`
 ```
 **NB**: only complete version of CUDA will work, simply install cudatoolkit or nvcc from conda or other source is not possible \
@@ -69,10 +69,10 @@ The evaluation can be done by first passing a image tensor/PIL Image object/imag
 ### 4. Interpretation of the metrics
 - **Mean Weighted Error (MWE)**: Besides accuracy, the evaluation function will also compute an aggregated index that quantifies the overall performance on the task. We use the **MWE** as an innovative metric for evaluating numerosity generation abilities, addressing limitations of the traditional Mean Absolute Error (MAE). Unlike MAE, which treats all errors equally, MWE normalizes the absolute error by dividing it by the target value, making it sensitive to proportional rather than absolute differences. This normalization ensures fairness across numerical scales, as larger targets inherently permit greater absolute errors without compromising accuracy. 
 MWE also aligns with perceptual principles like Weber’s Law, reflecting the proportional nature of human numerosity estimation (Dehaene, 2003). The formula for the **Mean Weighted Error (MWE)** is defined as:
-$$
-\text{MWE} = \frac{1}{n} \sum_{i=1}^{n} \frac{\left| G_i - T_i \right|}{T_i}
-$$
- where $n$ is the total number of test samples,   $G_i$ is the generated numerosity for the $ i $-th sample, and  $ T_i $ is the target numerosity for the $ i $-th sample.
+
+$$\text{MWE} = \frac{1}{n} \sum_{i=1}^{n} \frac{|G_i - T_i|}{T_i}$$
+
+ where $n$ is the total number of test samples,   $G_{i}$ is the generated numerosity for the $i$-th sample, and  $T_{i}$ is the target numerosity for the $i$-th sample.
 
 - **Knower-Level**: We also assess the numerical knower-level of the agent by applying standard criteria used in the literature on the development of counting skills (Le Corre & Carey, 2007) to the average responses across all test trials. To be considered an “n”-knower (i.e.,  “One”-knower, “Two”-knower, “Three”-knower, “Four”-knower) the agent has to:
 1) Give n objects at least 67% of the time when asked for that number; and
