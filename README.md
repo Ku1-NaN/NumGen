@@ -3,9 +3,9 @@ NumGen is an original **AUTOMATIC** benchmark task inspired by cognitive psychol
 
 This benchmark goes beyond simple accuracy by incorporating the mean weighted error (MWE), a sophisticated metric that evaluates the precision of numerical reasoning; Knower-level, a concept derived from developmental psychology that mirrors stages of numerical understanding in humans; Human likeness: this metric measures how closely these agents emulate human number sense and an overall score aggregates these insights, offering a comprehensive evaluation of the agents' enumeration capabilities. 
 
-<div style="text-align: center;">
+<p align="center">
 <img src="im/bench_icon.jpg" alt="Project logo" width="400" />
-</div>
+</p>
 
 ## Quick Start
 The demo.ipynb notebook showcases how to run the benchmark with stable diffusion 2.1 on the fly (i.e. without saving the images locally) 
