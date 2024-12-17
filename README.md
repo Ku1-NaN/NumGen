@@ -88,3 +88,11 @@ To be considered an “n”-counter (i.e.,  “One”-counter, “Two”-counter
 2) Give n objects no more than half as often when asked for a different number.
 
 - **Correlation with Weber-like responses**: NumGen enables us to assess how closely the AI agents' behavior aligns with that of humans, we correlate AI agents' confusion matrices with human numerical estimation without counting ($w$=0.15), higher positive correlation indicates a better human likeness
+
+### 5. Leader Board
+| Model               | Accuracy | MWE   | Counting Level | Weber’s Law |
+|---------------------|----------|-------|----------------|-------------|
+| Random baseline     | 0.04     | 2.293 | 0              | -0.019      |
+| DALL-E v3           | 0.319    | 0.470 | 1              | 0.841       |
+| Stable Diffusion v3.5 | 0.411  | 0.258 | 3              | 0.912       |
+| FLUX                | 0.442    | 0.250 | 2              | 0.891       |
