@@ -19,7 +19,7 @@ import random
 
 def generate_strings(num_strings=100, save_format='txt', filename=None):
     """
-    Generate a list of strings of format: "{n} {object}", where
+    Generate a list of strings of format: "An image with {n} {object}", where
     n ranges from 1 to 10 and objects are chosen randomly from a predefined list.
 
     Each number (1-10) is equally represented, and categories are randomized.
@@ -61,9 +61,9 @@ def generate_strings(num_strings=100, save_format='txt', filename=None):
 
         # Decide whether to use singular or plural based on n
         if n == 1:
-            text = f"{n} {obj_singular}"
+            text = f"An image with {n} {obj_singular}"
         else:
-            text = f"{n} {obj_plural}"
+            text = f"An image with {n} {obj_plural}"
 
         generated.append(text)
 
