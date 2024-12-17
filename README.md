@@ -80,7 +80,8 @@ The evaluation can be done by first passing a image tensor/PIL Image object/imag
 MWE also aligns with perceptual principles like Weber’s Law, reflecting the proportional nature of human numerosity estimation (Dehaene, 2003). The formula for the **Mean Weighted Error (MWE)** is defined as:
 
 $$\text{MWE} = \frac{1}{n} \sum_{i=1}^{n} \frac{|G_i - T_i|}{T_i}$$ 
-where $n$ is the total number of test samples,   $G_{i}$ is the generated numerosity for the $i$-th sample, and  $T_{i}$ is the target numerosity for the $i$-th sample.
+
+where $n$ is the total number of test samples, $G_{i}$ is the generated numerosity for the $i$-th sample, and $T_{i}$ is the target numerosity for the $i$-th sample.
 
 - **Counting Level**: We also assess the numerical knower-level of the agent by applying standard criteria used in the literature on the development of counting skills (Le Corre & Carey, 2007) to the average responses across all test trials. 
 To be considered an “n”-counter (i.e.,  “One”-counter, “Two”-counter, “Three”-counter...) the agent has to:
@@ -90,9 +91,13 @@ To be considered an “n”-counter (i.e.,  “One”-counter, “Two”-counter
 - **Correlation with Weber-like responses**: NumGen enables us to assess how closely the AI agents' behavior aligns with that of humans, we correlate AI agents' confusion matrices with human numerical estimation without counting ($w$=0.15), higher positive correlation indicates a better human likeness
 
 ### 5. Leader Board
+<div align="center">
+
 | Model               | Accuracy | MWE   | Counting Level | Weber’s Law |
 |---------------------|----------|-------|----------------|-------------|
 | Random baseline     | 0.04     | 2.293 | 0              | -0.019      |
 | DALL-E v3           | 0.319    | 0.470 | 1              | 0.841       |
 | Stable Diffusion v3.5 | 0.411  | 0.258 | 3              | 0.912       |
 | FLUX                | 0.442    | 0.250 | 2              | 0.891       |
+
+</div>
