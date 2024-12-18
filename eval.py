@@ -121,6 +121,13 @@ def create_CM(prompts, generate_image):
         image = generate_image(prompt)
         targetN = prompt.split(' ')[2]
         generatedN = eval_image(image,prompt)
-        CM[targetN-1, generatedN-1] +=1
+
+        if generatedN > 20:
+            generatedN =20
+
+        if generatedN == 0:
+            raise ValueError('False Image, Try generate again')
+
+        CM[targetN-1, 20-generatedN] +=1
     
     return CM
